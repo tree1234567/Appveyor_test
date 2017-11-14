@@ -34,6 +34,11 @@ def send_mail(send_from, send_to, subject, text, files=None,
 
 
     smtp = smtplib.SMTP(server, 587)
+    s.ehlo() # Hostname to send for this command defaults to the fully qualified domain name of the local host.
+    s.starttls() #Puts connection to SMTP server in TLS mode
+    s.ehlo()
+    s.login('armando.amador@hotmail.com', '97znwftp6!')
+
     smtp.sendmail(send_from, send_to, msg.as_string())
     smtp.close()
 
