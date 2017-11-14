@@ -14,14 +14,11 @@ environment:
     # a later point release.
     # See: http://www.appveyor.com/docs/installed-software#python
 
-
-    - PYTHON: "C:\\Python34-x64"
-      PYTHON_VERSION: "3.4.x" # currently 3.4.3
-      PYTHON_ARCH: "64"
     allow_failures:
     - PYTHON: "C:\\Python34-x64"
       PYTHON_VERSION: "3.4.x" # currently 3.4.3
       PYTHON_ARCH: "64"
+    
 
 install:
   # If there is a newer build queued for the same PR, cancel this one.
