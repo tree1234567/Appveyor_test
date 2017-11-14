@@ -11,7 +11,7 @@ from email.utils import COMMASPACE, formatdate
 
 
 def send_mail(send_from, send_to, subject, text, files=None,
-              server="webmail.stats.com"):
+              server="smtp.live.com"):
     assert isinstance(send_to, list)
 
     msg = MIMEMultipart()
@@ -33,7 +33,7 @@ def send_mail(send_from, send_to, subject, text, files=None,
         msg.attach(part)
 
 
-    smtp = smtplib.SMTP(server)
+    smtp = smtplib.SMTP(server, 587)
     smtp.sendmail(send_from, send_to, msg.as_string())
     smtp.close()
 
@@ -41,8 +41,8 @@ def send_mail(send_from, send_to, subject, text, files=None,
 
 
 def test_some_function():
-    send_mail("aamador@stats.com", ["aamador@stats.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
-    assert_equal(some_function(0, 0), 2)
+    send_mail("armando.amador@hotmail.com", ["armando.amador@hotmail.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
+    assert_equal(some_function(0, 0), 0)
     assert_equal(some_function(0, 42), 0)
     assert_equal(some_function(41, 2), 1)
     assert_equal(some_function(1, 2), 1)
