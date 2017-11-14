@@ -41,7 +41,7 @@ def send_mail(send_from, send_to, subject, text, files=None,
 
 
 def test_some_function():
-    send_mail("aamador@stats.com", ["aamador@stats.com"], "This is a test", "SOMETHING DUN FUCKED UP!", files=["test.txt"])
+    send_mail("aamador@stats.com", ["aamador@stats.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
     assert_equal(some_function(0, 0), 2)
     assert_equal(some_function(0, 42), 0)
     assert_equal(some_function(41, 2), 1)
