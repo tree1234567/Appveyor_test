@@ -49,7 +49,7 @@ def send_mail(send_from, send_to, subject, text, files=None,
 def test_some_function():
     #send_mail("armando.amador@hotmail.com", ["armando.amador@hotmail.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
     # f = open("test.txt","r")
-    cwd = os.getcwd()
+    cwd = os.path.dirname(__file__)
     sys.stdout.write(cwd)
     assert_equal(some_function(0, 0), 0)
     assert_equal(some_function(0, 42), 0)
