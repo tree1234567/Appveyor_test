@@ -49,9 +49,15 @@ def send_mail(send_from, send_to, subject, text, files=None,
 def test_some_function():
     #send_mail("armando.amador@hotmail.com", ["armando.amador@hotmail.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
     f = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test.txt","r")
+    f2 = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test_2.txt","w")
+    f2.write("fdsfdasfadsfdfdasfdas")
+    f2.close()
+    f2.open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test_2.txt","r")
     # test_extension.py
     # cwd = os.path.dirname(__file__)
     sys.stdout.write(f.readlines()[0])
+    sys.stdout.write(f2.readlines()[0])
+    
     assert_equal(some_function(0, 0), 0)
     assert_equal(some_function(0, 42), 0)
     assert_equal(some_function(41, 2), 1)
