@@ -3,6 +3,7 @@ from nose.tools import assert_equal
 import xmltodict
 
 import smtplib
+import os
 from os.path import basename
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -47,9 +48,9 @@ def send_mail(send_from, send_to, subject, text, files=None,
 
 def test_some_function():
     #send_mail("armando.amador@hotmail.com", ["armando.amador@hotmail.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
-    f = open("test.txt","r")
-    
-    
+    # f = open("test.txt","r")
+    cwd = os.getcwd()
+    sys.stdout.write(cwd)
     assert_equal(some_function(0, 0), 0)
     assert_equal(some_function(0, 42), 0)
     assert_equal(some_function(41, 2), 1)
