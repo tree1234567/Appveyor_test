@@ -1,0 +1,1 @@
+{'http://prod.origin.api.stats.com/v1/stats/basketball/nba/stats/players/172645/events/1002980/?season=2010&lineup=true&accept=xml&api_key=uri_checker': {'hash': '33e8b0ec51068075b17f8ac192eeb829', 'masterfile': 'xml_output_filestore\\33e8b0ec51068075b17f8ac192eeb829.txt', 'orderedObjectHash': 'f1f84b8d81aa90eca9f815110a062bdc'}}

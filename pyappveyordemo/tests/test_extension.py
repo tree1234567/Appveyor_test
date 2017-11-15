@@ -1,9 +1,8 @@
+import xmltodict, smtplib, os, sys
+
+from urllib.request import urlopen
 from pyappveyordemo.extension import some_function
 from nose.tools import assert_equal
-import xmltodict
-
-import smtplib
-import os, sys
 from os.path import basename
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -43,22 +42,53 @@ def send_mail(send_from, send_to, subject, text, files=None,
     smtp.sendmail(send_from, send_to, msg.as_string())
     smtp.close()
 
+def computeMD5hash(my_string):
+    m = hashlib.md5()
+    m.update(my_string.encode('utf-8'))
+    return m.hexdigest()
+
+def ordered(obj):
+    if isinstance(obj, dict):
+        return sorted((k, ordered(v)) for k, v in obj.items())
+    if isinstance(obj, list):
+        return sorted(ordered(x) for x in obj)
+    else:
+        return obj
 
 
 
 def test_some_function():
-    #send_mail("armando.amador@hotmail.com", ["armando.amador@hotmail.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
-    f = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test.txt","r")
-    f2 = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test_2.txt","w")
-    f2.write("fdsfdasfadsfdfdasfdas")
-    f2.close()
-    f2 = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test_2.txt","r")
+    storedDict = eval(open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\my_dict.txt", "r").read())  
+    
+    flag = False
+
+    for key, value in storedDict.items():
+        sys.stdout.write("Testing Url: %s" % key)
+        with urlopen(key) as conn_2:
+            string = conn_2.read().decode('utf-8')
+            
+            string = re.sub('<apiReturn.*<apiResults>','',string,flags=re.DOTALL)
+            string = string.replace('</apiResults></apiReturn>', "")
+            # print(string_2)
+            check =  computeMD5hash(string)
+
+            if check == value["hash"]:
+                sys.stdout.write("PASSED: %s" % key)
+            
+            else:
+                xml_to_dict = xmltodict.parse(string)
+                ordered_dict = ordered(xml_to_dict)
+                ordered_dict_hash = computeMD5hash(str(ordered_dict))
+                if (ordered_dict_hash == value[orderedObjecthash]):
+                    sys.stdout.write("PASSED: %s" % key) 
+                else:
+                    sys.stdout.write("FAILED: %s" % key)
+                    flag = True
     # test_extension.py
     # cwd = os.path.dirname(__file__)
-    sys.stdout.write(f.readlines()[0])
-    sys.stdout.write(f2.readlines()[0])
-    
-    assert_equal(some_function(0, 0), 0)
-    assert_equal(some_function(0, 42), 0)
-    assert_equal(some_function(41, 2), 1)
-    assert_equal(some_function(1, 2), 1)
+    if flag:
+        send_mail("armando.amador@hotmail.com", ["armando.amador@hotmail.com"], "This is a test", "SOMETHING DUN FUCKED UP!")        
+        assert_equal(0,1)
+        
+    else:
+        assert_equal(0,0)
