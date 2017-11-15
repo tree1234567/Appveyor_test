@@ -3,7 +3,7 @@ from nose.tools import assert_equal
 import xmltodict
 
 import smtplib
-import os
+import os, sys
 from os.path import basename
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
