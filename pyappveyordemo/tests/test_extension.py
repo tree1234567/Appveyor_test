@@ -11,7 +11,7 @@ from email.utils import COMMASPACE, formatdate
 
 
 def send_mail(send_from, send_to, subject, text, files=None,
-              server="smtp.live.com"):
+              server="webmail.stats.com"):
     assert isinstance(send_to, list)
 
     msg = MIMEMultipart()
@@ -37,7 +37,7 @@ def send_mail(send_from, send_to, subject, text, files=None,
     smtp.ehlo() # Hostname to send for this command defaults to the fully qualified domain name of the local host.
     smtp.starttls() #Puts connection to SMTP server in TLS mode
     smtp.ehlo()
-    smtp.login('armando.amador@hotmail.com', '97znwftp6!')
+    smtp.login('aamador@stats.com', 'cheeko4dioS')
 
     smtp.sendmail(send_from, send_to, msg.as_string())
     smtp.close()
@@ -46,7 +46,7 @@ def send_mail(send_from, send_to, subject, text, files=None,
 
 
 def test_some_function():
-    send_mail("armando.amador@hotmail.com", ["armando.amador@hotmail.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
+    send_mail("aamador@stats.com", ["aamador@stats.com"], "This is a test", "SOMETHING DUN FUCKED UP!")
     assert_equal(some_function(0, 0), 0)
     assert_equal(some_function(0, 42), 0)
     assert_equal(some_function(41, 2), 1)
