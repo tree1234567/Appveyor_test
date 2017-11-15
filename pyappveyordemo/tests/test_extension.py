@@ -51,7 +51,7 @@ def test_some_function():
     f = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test.txt","r")
     # test_extension.py
     # cwd = os.path.dirname(__file__)
-    sys.stdout.write(f)
+    sys.stdout.write(f.readlines()[0])
     assert_equal(some_function(0, 0), 0)
     assert_equal(some_function(0, 42), 0)
     assert_equal(some_function(41, 2), 1)
