@@ -52,7 +52,7 @@ def test_some_function():
     f2 = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test_2.txt","w")
     f2.write("fdsfdasfadsfdfdasfdas")
     f2.close()
-    f2.open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test_2.txt","r")
+    f2 = open("C:\\projects\\appveyor-test\\pyappveyordemo\\tests\\test_2.txt","r")
     # test_extension.py
     # cwd = os.path.dirname(__file__)
     sys.stdout.write(f.readlines()[0])
